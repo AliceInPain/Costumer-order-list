@@ -96,19 +96,41 @@ for costumer in data["customers"]:
     
     
     
-    
-# get the information of the costumers who have more than 1 order in 2024
-        item_quantity = item["quantity"]
-        date = order["date"]
-        if date.startswith("2024") and item_quantity > 1:
-            # print(costumer_name)
-            #displays:
-            #John Doe
-            break
-            
-            
-            
+#get the information of the costumers who have more than 1 order in 2024
+            item_quantity = item["quantity"]
+            date = order["date"]
+            if date.startswith("2024") and item_quantity > 1:
+                # print(costumer_name)
+                #displays:
+                #John Doe
+                break
+
+        
+        
+print("*******************************************************")   
 # get the top products based on total sales & calculate their profit
+max_quantity = 0
+top_product = None
+for costumer in data["customers"]:    
+    for order in costumer["orders"]:
+        for item in order["items"]:
+            top_product = item["name"]
+            item_quantity = item["quantity"]
+            item_price = item["price"] *item["quantity"]
+            item_cost = item["cost"] *item["quantity"]
+            if item_quantity > max_quantity:
+                max_quantity = item_quantity #==>insert next quantity to the max quantity
+                top_product_profit = get_profit(item_price,item_cost)
+print(f"Top Product: {top_product}, Total Sales: {max_quantity}, Profit: {top_product_profit} ")
+#displays:
+# Top Product: Headphones, Total Sales: 2, Profit: 30.0 
+  
+
+
+
+
+
+#calculating total sales           
 def get_sales(price,quantity):
     return price * quantity
 
@@ -120,7 +142,7 @@ for customer in data["customers"]:
             item_price = item["price"]
             item_cost = item["cost"]
             total_sales += get_sales(item_price, item_quantity)
-print(f"Total Sales: ${total_sales}")
+# print(f"Total Sales: ${total_sales}")
 #displays:
 #Total Sales: $2250.0
         
