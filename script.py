@@ -101,13 +101,27 @@ for costumer in data["customers"]:
         item_quantity = item["quantity"]
         date = order["date"]
         if date.startswith("2024") and item_quantity > 1:
-            print(costumer_name)
+            # print(costumer_name)
             #displays:
             #John Doe
+            break
             
             
             
-            
-                
-                
+# get the top products based on total sales & calculate their profit
+def get_sales(price,quantity):
+    return price * quantity
+
+total_sales = 0
+for customer in data["customers"]:
+    for order in customer["orders"]:
+        for item in order["items"]:
+            item_quantity = item["quantity"]
+            item_price = item["price"]
+            item_cost = item["cost"]
+            total_sales += get_sales(item_price, item_quantity)
+print(f"Total Sales: ${total_sales}")
+#displays:
+#Total Sales: $2250.0
+        
                 
