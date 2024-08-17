@@ -80,15 +80,34 @@ def get_profit(price,cost):
 #get total profit for each costumer based on price and cost
 for costumer in data["customers"]:
     costumer_name = costumer["name"]
-    total_profit =0 #resets for each costumer
+    total_profit = 0 #resets for each costumer
     
     for order in costumer["orders"]:
         for item in order["items"]:
             item_price = item["price"] *item["quantity"]
             item_cost = item["cost"] *item["quantity"]
             total_profit += get_profit(item_price, item_cost)
-    print(f"Total Profit gained from {costumer_name}: ${total_profit}")
+    # print(f"Total Profit gained from {costumer_name}: ${total_profit}")
     #displays:
     # Total Profit gained from John Doe: $460.0
     # Total Profit gained from Jane Smith: $370.0
     
+    
+    
+    
+    
+    
+# get the information of the costumers who have more than 1 order in 2024
+        item_quantity = item["quantity"]
+        date = order["date"]
+        if date.startswith("2024") and item_quantity > 1:
+            print(costumer_name)
+            #displays:
+            #John Doe
+            
+            
+            
+            
+                
+                
+                
