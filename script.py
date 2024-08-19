@@ -1,76 +1,10 @@
 from pprint import pprint
+import json
 
-data = {
-  "customers": [
-    {
-      "customer_id": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
-      "orders": [
-        {
-          "order_id": 1001,
-          "date": "2024-01-15",
-          "items": [
-            {
-              "product_id": 2001,
-              "name": "Laptop",
-              "quantity": 1,
-              "price": 1200.00,
-              "cost": 800.00
-            },
-            {
-              "product_id": 2002,
-              "name": "Mouse",
-              "quantity": 2,
-              "price": 25.00,
-              "cost": 10.00
-            }
-          ]
-        },
-        {
-          "order_id": 1002,
-          "date": "2024-02-20",
-          "items": [
-            {
-              "product_id": 2003,
-              "name": "Keyboard",
-              "quantity": 1,
-              "price": 50.00,
-              "cost": 20.00
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "customer_id": 2,
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "orders": [
-        {
-          "order_id": 1003,
-          "date": "2024-01-22",
-          "items": [
-            {
-              "product_id": 2004,
-              "name": "Smartphone",
-              "quantity": 1,
-              "price": 800.00,
-              "cost": 500.00
-            },
-            {
-              "product_id": 2005,
-              "name": "Headphones",
-              "quantity": 1,
-              "price": 150.00,
-              "cost": 80.00
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+with open("shop.json", mode="r", encoding="utf-8") as read_file:
+    data = json.load(read_file)
+
+
 
 
 def get_profit(price,cost):
@@ -83,6 +17,7 @@ for customer in data["customers"]:
     total_profit = 0 #resets for each customer
     
     for order in customer["orders"]:
+        
         for item in order["items"]:
             item_price = item["price"] *item["quantity"]
             item_cost = item["cost"] *item["quantity"]
@@ -100,7 +35,7 @@ for customer in data["customers"]:
             item_quantity = item["quantity"]
             date = order["date"]
             if date.startswith("2024") and item_quantity > 1:
-                # print(customer_name)
+                # print(f"{customer_name} has more than one order in 2024")
                 #displays:
                 #John Doe
                 break
@@ -145,13 +80,13 @@ for customer in data["customers"]:
         customer_total_value += order_value
         order_count +=1
     customer_total_average = get_average(customer_total_value,order_count)
-    print(f" Customer Name: {customer_name}, Total Value: {customer_total_value}, Num of Orders: {order_count}, Total Average: {customer_total_average}")
+    # print(f" Customer Name: {customer_name}, Total Value: {customer_total_value}, Num of Orders: {order_count}, Total Average: {customer_total_average}")
         #dispalys:
         # Customer Name: John Doe, Total Value: 1300.0, Num of Orders: 2, Total Average: 650.0
         # Customer Name: Jane Smith, Total Value: 950.0, Num of Orders: 1, Total Average: 950.0
     if customer_total_average > 500:
         customer_above_500.append(customer_name)
-print(f"Cutomers with total average above 500: {customer_above_500}")   
+# print(f"Customers with total average above 500: {customer_above_500}")   
 #displays:
 # Cutomers with total average above 500: ['John Doe', 'Jane Smith']
 
