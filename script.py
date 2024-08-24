@@ -53,7 +53,7 @@ for customer in data["customers"]:
                 top_product = item["name"]
                 max_quantity = item_quantity #==>insert next quantity to the max quantity
                 top_product_profit = get_profit(item_price,item_cost)
-# print(f"Top Product: {top_product}, Total Sales: {max_quantity}, Profit: {top_product_profit}")
+print(f"Top Product: {top_product}, Total Sales: {max_quantity}, Profit: {top_product_profit}")
 #displays:
 # Top Product: Mouse, Total Sales: 2, Profit: 30.0
   
@@ -62,8 +62,9 @@ for customer in data["customers"]:
 #get the average value of each customer's orders & print the name of customers whose average order value is > 500
 def get_average(total,count):
     return total/count
-customer_above_500 = []
 
+
+customer_above_500 = []
 for customer in data["customers"]:
     customer_name = customer["name"]
     customer_total_value = 0 #values of all orders made by each customer
