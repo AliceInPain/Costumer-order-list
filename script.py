@@ -59,10 +59,6 @@ for customer in data["customers"]:
   
 
 
-
-
-
-
 #get the average value of each customer's orders & print the name of customers whose average order value is > 500
 def get_average(total,count):
     return total/count
